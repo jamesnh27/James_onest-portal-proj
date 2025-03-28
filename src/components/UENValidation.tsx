@@ -5,8 +5,8 @@ import './UENValidation.css'; //Importing CSS for styling
 // Function to validate UEN based on the provided formats
 const validateUEN = (uen: string) => {
   const businessFormat = /^[0-9]{8}[A-Z]$/;  // e.g., 12345678A
-  const localCompanyFormat = /^[1-9][0-9]{8}[A-Z]$/;  // e.g., 199012345X
-  const otherEntityFormat = /^T\d{2}[A-Z]{2}[0-9]{4}[A-Z]$/;  // e.g., T08LL1234A
+  const localCompanyFormat = /^(19|20)[0-9]{6}[A-Z]$/;  // e.g., 199012345X
+  const otherEntityFormat = /^[SRT]\d{2}[A-Z]{2}[0-9]{4}[A-Z]$/;  // e.g., T08LL1234A
 
   return businessFormat.test(uen) || localCompanyFormat.test(uen) || otherEntityFormat.test(uen);
 };

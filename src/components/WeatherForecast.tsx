@@ -22,6 +22,7 @@ interface ApiResponse {
 
 const WeatherForecast: React.FC = () => {
   const [location, setLocation] = useState<string>('');
+  const [resultLocation, setResultLocation] = useState<string>('');
   const [forecast, setForecast] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -55,7 +56,8 @@ const WeatherForecast: React.FC = () => {
 }, []);
 
     const fetchForecast = async () => {
-      if (!location.trim()) {
+      const queryLocation = location.trim();
+      if (!queryLocation) {
         setError('Please enter a location in Singapore');
         return;
       }
@@ -89,13 +91,14 @@ const WeatherForecast: React.FC = () => {
 
         // Find the forecast for the specified location
         const foundForecast = data.data.items[0].forecasts.find(
-          (f) => f.area.toLowerCase() === location.toLowerCase()
+          (f) => f.area.toLowerCase() === queryLocation.toLowerCase()
         );
 
         if (foundForecast) {
+          setResultLocation(queryLocation);
           setForecast(foundForecast.forecast);
         } else {
-          setError("Location not found. Try one of these : ${availableAreas.slice(0, 5).join(', ')}${availableAreas.length > 5 ? '...' : ''}");
+          setError(`Location not found. Try one of these : ${availableAreas.slice(0, 5).join(', ')}${availableAreas.length > 5 ? '...' : ''}`);
         }
       } catch (err) {
         setError(`Error: ${(err as Error).message}`);
@@ -147,17 +150,12 @@ const WeatherForecast: React.FC = () => {
       {error && (
         <div className="error-message">
           {error}
-          {availableAreas.length > 0 &&(
-            <div className='area-suggestions'>
-              <p>Availabl areas include: {availableAreas.slice(0,10).join(', ')}...</p>
-            </div>
-          )}
         </div>
       )}
 
       {forecast && (
         <div className="forecast-result">
-          <h4>Weather for {location}</h4>
+          <h4>Weather for {resultLocation}</h4>
           <p className="forecast-text">{forecast}</p>
           {lastUpdated && (
             <p className="update-time">Last updated: {lastUpdated}</p>
