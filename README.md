@@ -7,7 +7,7 @@ Before you begin, ensure that the following is installed:
 
 ## Installation
 Follow the steps to get the project running on your local machine:
-1) Clone the repository to your local machine:
+1) Clone the repository to your local machine. Please ensure to change directory into the project file
 
 ```
 git clone https://github.com/jamesnh27/James_onest-portal-proj.git
