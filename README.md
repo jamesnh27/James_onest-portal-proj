@@ -7,14 +7,15 @@ Before you begin, ensure that the following is installed:
 
 ## Installation
 Follow the steps to get the project running on your local machine:
-1) Clone the repository
-Clone the repository  to your local machine:
+1) Clone the repository to your local machine:
+
 ```
 git clone https://github.com/jamesnh27/James_onest-portal-proj.git
 cd James_onest-portal-proj
 ```
-2) Install dependencies
-Install the necessary dependencies using
+
+2) Install dependencies using the command
+
 ```
 npm install
 ```
@@ -33,6 +34,8 @@ To run tests on UENValidation, please use
 ```
 npm test
 ```
+
+
 
 
 
